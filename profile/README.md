@@ -17,7 +17,7 @@ A probabilistic programming language for specifying probabilistic graphical mode
 - **[ExponentialFamily](https://github.com/ReactiveBayes/ExponentialFamily.jl)**
 Extends [Distributions.jl](https://github.com/JuliaStats/Distributions.jl) with comprehensive implementations of a collection of exponential family distributions.
 - **[Rocket](https://github.com/ReactiveBayes/Rocket.jl)**
-A reactive programming framework providing core primitives for event handling and streaming for Julia. A reactive programming library for Julia providing core primitives for event handlin gand streaming, inspired by [RxJS](https://github.com/ReactiveX/rxjs). It forms the backbone for reactive computations in the ecosystem.
+A reactive programming framework providing core primitives for event handling and streaming for Julia, inspired by [RxJS](https://github.com/ReactiveX/rxjs). It forms the backbone for reactive computations in the ecosystem.
 
 ## Supporting Packages
 
