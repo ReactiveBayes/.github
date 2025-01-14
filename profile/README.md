@@ -53,9 +53,9 @@ graph TD
     ExponentialFamilyProjection --> BayesBase
 
     %% Node styling
-    classDef default fill:#f0f4f8,stroke:#a0aec0,stroke-width:2px,rx:5px;
-    classDef rxi fill:#e6f0ff,stroke:#4a90e2,stroke-width:2px,rx:5px;
-    classDef core fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,rx:5px;
+    classDef default fill:#f0f4f8,stroke:#a0aec0,stroke-width:2px,rx:5px,text-decoration:none;
+    classDef rxi fill:#e6f0ff,stroke:#4a90e2,stroke-width:2px,rx:5px,text-decoration:none;
+    classDef core fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,rx:5px,text-decoration:none;
     
     %% Apply core styling to main packages
     class ReactiveMP,GraphPPL,Rocket,ExponentialFamily core;
