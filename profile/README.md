@@ -63,21 +63,24 @@ graph TD
 
     %% Remove background from main graph
     subgraph "ReactiveBayes Ecosystem"
-        RxInfer["RxInfer.jl<br/><small>High-level probabilistic<br/>programming framework</small>"]
-        RxInferExamples["RxInferExamples.jl<br/><small>Example applications<br/>using RxInfer</small>"]
-        GraphPPL["GraphPPL.jl<br/><small>Probabilistic model<br/>specification language</small>"]
-        ReactiveMP["ReactiveMP.jl<br/><small>Message passing-based<br/>inference engine</small>"]
-        Rocket["Rocket.jl<br/><small>Reactive programming<br/>primitives</small>"]
-        RxEnvironments["RxEnvironments.jl<br/><small>Reactive environments<br/>for RL</small>"]
-        ExponentialFamily["ExponentialFamily.jl<br/><small>Extended probability<br/>distributions</small>"]
-        ExponentialFamilyProjection["ExponentialFamilyProjection.jl<br/><small>Density projection<br/>utilities</small>"]
-        ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl<br/><small>Distribution manifold<br/>representations</small>"]
-        BayesBase["BayesBase.jl<br/><small>Core Bayesian<br/>utilities</small>"]
+        RxInfer["RxInfer.jl"]
+        RxInferExamples["RxInferExamples.jl"]
+        GraphPPL["GraphPPL.jl"]
+        ReactiveMP["ReactiveMP.jl"]
+        Rocket["Rocket.jl"]
+        RxEnvironments["RxEnvironments.jl"]
+        ExponentialFamily["ExponentialFamily.jl"]
+        ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
+        ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
+        BayesBase["BayesBase.jl"]
     end
 
     %% Style settings
-    %%{ init: { 'theme': 'base', 'themeVariables': { 'fontSize': '32px' } } }%%
+    %%{ init: { 'theme': 'base', 'themeVariables': { 'fontSize': '16px' } } }%%
 ```
+
+> [!NOTE]  
+> Blocks in the diagram are clickable and will open the corresponding GitHub repository in a new tab.
 
 ## Key Packages
 
