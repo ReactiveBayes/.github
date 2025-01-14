@@ -4,7 +4,53 @@ Open source software for reactive, efficient and scalable Bayesian inference.
 
 Welcome to the Reactive Bayes organization! We develop and maintain a suite of Julia packages for probabilistic programming and Bayesian inference with a focus on reactive and message-passing based inference algorithms.
 
-![Ecosystem](https://github.com/ReactiveBayes/.github/blob/main/profile/ecosystem.png?raw=true)
+```mermaid 
+graph TD
+    %% Node definitions
+    RxInfer["RxInfer.jl"]
+    RxInferExamples["RxInferExamples.jl"]
+    GraphPPL["GraphPPL.jl"]
+    ReactiveMP["ReactiveMP.jl"]
+    Rocket["Rocket.jl"]
+    RxEnvironments["RxEnvironments.jl"]
+    ExponentialFamily["ExponentialFamily.jl"]
+    ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
+    ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
+    BayesBase["BayesBase.jl"]
+
+    %% Connections
+    RxInfer --> GraphPPL
+    RxInfer --> ReactiveMP
+    RxInfer --> Rocket
+
+    RxEnvironments --> RxInfer
+    RxEnvironments --> Rocket
+
+    RxInferExamples --> RxInfer
+    
+    ReactiveMP --> ExponentialFamily
+    ReactiveMP --> ExponentialFamilyProjection
+    ReactiveMP --> Rocket
+    
+    ExponentialFamilyProjection --> ExponentialFamilyManifolds
+    ExponentialFamilyProjection --> ExponentialFamily
+    ExponentialFamilyManifolds --> ExponentialFamily
+    
+    ReactiveMP --> ExponentialFamily
+    
+    ExponentialFamily --> BayesBase
+    ExponentialFamilyManifolds --> BayesBase
+    ExponentialFamilyProjection --> BayesBase
+
+    %% Node styling
+    classDef default fill:#f0f4f8,stroke:#a0aec0,stroke-width:2px,rx:5px,text-decoration:none,color:#000;
+    classDef rxi fill:#e6f0ff,stroke:#4a90e2,stroke-width:2px,rx:5px,text-decoration:none,color:#000;
+    classDef core fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,rx:5px,text-decoration:none,color:#000;
+    
+    %% Apply core styling to main packages
+    class ReactiveMP,GraphPPL,Rocket,ExponentialFamily core;
+    class RxInfer rxi;
+```
 
 ## Key Packages
 
@@ -29,6 +75,13 @@ Enables projection of (un-normalized) log probability density functions onto exp
 
 - **[BayesBase](https://github.com/ReactiveBayes/BayesBase.jl)**
 Defines and re-exports core methods and utilities for Bayesian computation. It provides a shared foundation for the Reactive Bayes ecosystem.
+
+## Application specific packages
+
+- **[RxInferExamples](https://github.com/ReactiveBayes/RxInferExamples.jl)**
+Contains example applications using RxInfer.
+- **[RxEnvironments](https://github.com/ReactiveBayes/RxEnvironments.jl)**
+Provides reactive environments for agents.
 
 Our packages are designed to work together seamlessly to provide:
 
