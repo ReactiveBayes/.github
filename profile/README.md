@@ -6,37 +6,27 @@ Welcome to the Reactive Bayes organization! We develop and maintain a suite of J
 
 ```mermaid 
 graph TD
-    %% Node definitions with links
-    RxInfer[RxInfer.jl]
-    click RxInfer href "https://github.com/ReactiveBayes/RxInfer.jl" _blank
-    GraphPPL[GraphPPL.jl]
-    click GraphPPL href "https://github.com/ReactiveBayes/GraphPPL.jl" _blank
-    ReactiveMP[ReactiveMP.jl]
-    click ReactiveMP href "https://github.com/ReactiveBayes/ReactiveMP.jl" _blank
-    Rocket[Rocket.jl]
-    click Rocket href "https://github.com/ReactiveBayes/Rocket.jl" _blank
-    RxEnvironments[RxEnvironments.jl]
-    click RxEnvironments href "https://github.com/ReactiveBayes/RxEnvironments.jl" _blank
-    ExponentialFamily[ExponentialFamily.jl]
-    click ExponentialFamily href "https://github.com/ReactiveBayes/ExponentialFamily.jl" _blank
-    ExponentialFamilyProjection[ExponentialFamilyProjection.jl]
-    click ExponentialFamilyProjection href "https://github.com/ReactiveBayes/ExponentialFamilyProjection.jl" _blank
-    ExponentialFamilyManifolds[ExponentialFamilyManifolds.jl]
-    click ExponentialFamilyManifolds href "https://github.com/ReactiveBayes/ExponentialFamilyManifolds.jl" _blank
-    BayesBase[BayesBase.jl]
-    click BayesBase href "https://github.com/ReactiveBayes/BayesBase.jl" _blank
-    RxInferExamples[RxInferExamples.jl]
-    click RxInferExamples href "https://github.com/ReactiveBayes/RxInferExamples.jl" _blank
+    %% Node definitions
+    RxInfer["RxInfer.jl"]
+    RxInferExamples["RxInferExamples.jl"]
+    GraphPPL["GraphPPL.jl"]
+    ReactiveMP["ReactiveMP.jl"]
+    Rocket["Rocket.jl"]
+    RxEnvironments["RxEnvironments.jl"]
+    ExponentialFamily["ExponentialFamily.jl"]
+    ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
+    ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
+    BayesBase["BayesBase.jl"]
 
     %% Connections
     RxInfer --> GraphPPL
     RxInfer --> ReactiveMP
     RxInfer --> Rocket
 
-    RxEnvironments --- RxInfer
-    RxEnvironments --- Rocket
+    RxEnvironments --> RxInfer
+    RxEnvironments --> Rocket
 
-    RxInferExamples --- RxInfer
+    RxInferExamples --> RxInfer
     
     ReactiveMP --> ExponentialFamily
     ReactiveMP --> ExponentialFamilyProjection
@@ -60,27 +50,7 @@ graph TD
     %% Apply core styling to main packages
     class ReactiveMP,GraphPPL,Rocket,ExponentialFamily core;
     class RxInfer rxi;
-
-    %% Remove background from main graph
-    subgraph "ReactiveBayes Ecosystem"
-        RxInfer["RxInfer.jl"]
-        RxInferExamples["RxInferExamples.jl"]
-        GraphPPL["GraphPPL.jl"]
-        ReactiveMP["ReactiveMP.jl"]
-        Rocket["Rocket.jl"]
-        RxEnvironments["RxEnvironments.jl"]
-        ExponentialFamily["ExponentialFamily.jl"]
-        ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
-        ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
-        BayesBase["BayesBase.jl"]
-    end
-
-    %% Style settings
-    %%{ init: { 'theme': 'base', 'themeVariables': { 'fontSize': '16px' } } }%%
 ```
-
-> [!NOTE]  
-> Blocks in the diagram are clickable and will open the corresponding GitHub repository in a new tab.
 
 ## Key Packages
 
