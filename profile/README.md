@@ -23,7 +23,6 @@ graph TD
     RxInfer --> ReactiveMP
     RxInfer --> Rocket
 
-    RxEnvironments --> RxInfer
     RxEnvironments --> Rocket
 
     RxInferExamples --> RxInfer
