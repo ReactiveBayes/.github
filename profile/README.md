@@ -17,12 +17,16 @@ graph TD
     ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
     ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
     BayesBase["BayesBase.jl"]
+    RxInferServer["RxInferServer.jl"]
+    RxInferClient["RxInferClient.py"]
 
     %% Connections
     RxInfer --> GraphPPL
     RxInfer --> ReactiveMP
     RxInfer --> Rocket
 
+    RxInferServer --> RxInfer
+    RxInferClient --> RxInferServer
     RxEnvironments --> Rocket
 
     RxInferExamples --> RxInfer
@@ -82,11 +86,21 @@ Contains example applications using RxInfer.
 - **[RxEnvironments](https://github.com/ReactiveBayes/RxEnvironments.jl)**
 Provides reactive environments for agents.
 
+## Deployment and Integration
+
+- **[RxInferServer.jl](https://github.com/lazydynamics/RxInferServer)**
+A RESTful HTTP server that enables deploying RxInfer models as web services. It provides endpoints for model management, inference, and learning operations. The server is available at [server.rxinfer.com](https://server.rxinfer.com/).
+
+- **[RxInferClient.py](https://github.com/lazydynamics/RxInferClient.py)**
+A Python client library for interacting with RxInferServer. It provides a simple and intuitive interface to work with RxInfer models from Python, including model management, inference, and result processing. Documentation is available at [lazydynamics.github.io/RxInferClient.py](https://lazydynamics.github.io/RxInferClient.py/).
+
 Our packages are designed to work together seamlessly to provide:
 
 - **Reactive Inference**: Real-time updates as new data arrives
 - **Message Passing**: Efficient inference through local computations
 - **Scalability**: Handle large models and datasets
 - **Flexibility**: Mix and match components for your specific needs
+- **Deployment**: Easy deployment of models as web services
+- **Integration**: Seamless integration with other programming languages
 
 We welcome contributions from the community! Check out our individual package repositories for more details on how to get involved.
