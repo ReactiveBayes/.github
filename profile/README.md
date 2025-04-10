@@ -17,7 +17,7 @@ graph TD
     ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
     ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
     BayesBase["BayesBase.jl"]
-    RxInferServer["RxInferServer"]
+    RxInferServer["RxInferServer.jl"]
     RxInferClient["RxInferClient.py"]
 
     %% Connections
@@ -88,7 +88,7 @@ Provides reactive environments for agents.
 
 ## Deployment and Integration
 
-- **[RxInferServer](https://github.com/lazydynamics/RxInferServer)**
+- **[RxInferServer.jl](https://github.com/lazydynamics/RxInferServer)**
 A RESTful HTTP server that enables deploying RxInfer models as web services. It provides endpoints for model management, inference, and learning operations. The server is available at [server.rxinfer.com](https://server.rxinfer.com/).
 
 - **[RxInferClient.py](https://github.com/lazydynamics/RxInferClient.py)**
