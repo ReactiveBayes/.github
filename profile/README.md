@@ -4,6 +4,9 @@ Open source software for reactive, efficient and scalable Bayesian inference.
 
 Welcome to the Reactive Bayes organization! We develop and maintain a suite of Julia packages for probabilistic programming and Bayesian inference with a focus on reactive and message-passing based inference algorithms.
 
+<img width="1376" height="768" alt="Gemini_Generated_Image_81khqw81khqw81kh" src="https://github.com/user-attachments/assets/25ef0a58-2a75-4b68-a708-dcfe8b721982" />
+
+
 ```mermaid 
 graph TD
     %% Node definitions
@@ -17,19 +20,17 @@ graph TD
     ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
     ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
     BayesBase["BayesBase.jl"]
-    RxInferServer["RxInferServer.jl"]
-    RxInferClient["RxInferClient.py"]
+    RxGP["RxGP.jl"]
 
     %% Connections
     RxInfer --> GraphPPL
     RxInfer --> ReactiveMP
     RxInfer --> Rocket
 
-    RxInferServer --> RxInfer
-    RxInferClient --> RxInferServer
     RxEnvironments --> Rocket
 
     RxInferExamples --> RxInfer
+    RxGP --> RxInfer
     
     ReactiveMP --> ExponentialFamily
     ReactiveMP --> ExponentialFamilyProjection
@@ -85,14 +86,8 @@ Defines and re-exports core methods and utilities for Bayesian computation. It p
 Contains example applications using RxInfer.
 - **[RxEnvironments](https://github.com/ReactiveBayes/RxEnvironments.jl)**
 Provides reactive environments for agents.
-
-## Deployment and Integration
-
-- **[RxInferServer.jl](https://github.com/lazydynamics/RxInferServer)**
-A RESTful HTTP server that enables deploying RxInfer models as web services. It provides endpoints for model management, inference, and learning operations. The server is available at [server.rxinfer.com](https://server.rxinfer.com/).
-
-- **[RxInferClient.py](https://github.com/lazydynamics/RxInferClient.py)**
-A Python client library for interacting with RxInferServer. It provides a simple and intuitive interface to work with RxInfer models from Python, including model management, inference, and result processing. Documentation is available at [lazydynamics.github.io/RxInferClient.py](https://lazydynamics.github.io/RxInferClient.py/).
+- **[RxGP](https://github.com/ReactiveBayes/RxGP.jl)**
+Sparse Gaussian process factor nodes and variational message passing update rules for Sparse Variational Gaussian Process (VSGP) models within the RxInfer ecosystem. It enables embedding sparse GP computations directly into Forney-style factor graphs, with automatic inference over inducing variables, noise precisions, hyperparameters, and uncertain inputs.
 
 Our packages are designed to work together seamlessly to provide:
 
@@ -100,7 +95,22 @@ Our packages are designed to work together seamlessly to provide:
 - **Message Passing**: Efficient inference through local computations
 - **Scalability**: Handle large models and datasets
 - **Flexibility**: Mix and match components for your specific needs
-- **Deployment**: Easy deployment of models as web services
-- **Integration**: Seamless integration with other programming languages
 
 We welcome contributions from the community! Check out our individual package repositories for more details on how to get involved.
+
+## Using RxInfer from Python
+
+> **Third-party, unmaintained.** `RxInferServer.jl` and the `RxInferClient.py` Python SDK are developed by [Lazy Dynamics](https://lazydynamics.com) — an external organisation that is separate from the core RxInfer team. These projects are distributed under a different license than `RxInfer.jl` and are **not actively maintained** by the ReactiveBayes / RxInfer core team. The links on this page are provided for reference only; some of them may be outdated or unavailable. Please direct support requests to the respective upstream repositories rather than to the RxInfer issue tracker.
+
+RxInfer can be used from Python through the `RxInferServer.jl` RESTful API and the `RxInferClient.py` Python SDK.
+
+For detailed documentation on how to use RxInfer from Python, please refer to:
+
+- [RxInferServer Repository](https://github.com/lazydynamics/RxInferServer) — Source code and examples for the server
+- [Python SDK Repository](https://github.com/lazydynamics/RxInferClient.py) — Source code and examples for the Python client
+
+For support and issues, please use:
+
+- [RxInferServer Issues](https://github.com/lazydynamics/RxInferServer/issues)
+- [Python SDK Issues](https://github.com/lazydynamics/RxInferClient.py/issues)
+- [Community Discussions](https://github.com/ReactiveBayes/RxInfer.jl/discussions)
