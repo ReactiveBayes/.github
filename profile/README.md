@@ -4,6 +4,9 @@ Open source software for reactive, efficient and scalable Bayesian inference.
 
 Welcome to the Reactive Bayes organization! We develop and maintain a suite of Julia packages for probabilistic programming and Bayesian inference with a focus on reactive and message-passing based inference algorithms.
 
+<img width="1376" height="768" alt="Gemini_Generated_Image_81khqw81khqw81kh" src="https://github.com/user-attachments/assets/25ef0a58-2a75-4b68-a708-dcfe8b721982" />
+
+
 ```mermaid 
 graph TD
     %% Node definitions
