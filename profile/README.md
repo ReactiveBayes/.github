@@ -17,6 +17,7 @@ graph TD
     ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
     ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
     BayesBase["BayesBase.jl"]
+    RxGP["RxGP.jl"]
 
     %% Connections
     RxInfer --> GraphPPL
@@ -26,6 +27,7 @@ graph TD
     RxEnvironments --> Rocket
 
     RxInferExamples --> RxInfer
+    RxGP --> RxInfer
     
     ReactiveMP --> ExponentialFamily
     ReactiveMP --> ExponentialFamilyProjection
@@ -81,6 +83,8 @@ Defines and re-exports core methods and utilities for Bayesian computation. It p
 Contains example applications using RxInfer.
 - **[RxEnvironments](https://github.com/ReactiveBayes/RxEnvironments.jl)**
 Provides reactive environments for agents.
+- **[RxGP](https://github.com/ReactiveBayes/RxGP.jl)**
+Sparse Gaussian process factor nodes and variational message passing update rules for Sparse Variational Gaussian Process (VSGP) models within the RxInfer ecosystem. It enables embedding sparse GP computations directly into Forney-style factor graphs, with automatic inference over inducing variables, noise precisions, hyperparameters, and uncertain inputs.
 
 Our packages are designed to work together seamlessly to provide:
 
