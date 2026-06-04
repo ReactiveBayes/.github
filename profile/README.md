@@ -22,6 +22,7 @@ graph TD
     ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
     BayesBase["BayesBase.jl"]
     RxGP["RxGP.jl"]
+    RxInferBenchmarks["RxInferBenchmarks.jl"]
 
     %% Connections
     RxInfer --> GraphPPL
@@ -32,6 +33,7 @@ graph TD
 
     RxInferExamples --> RxInfer
     RxGP --> RxInfer
+    RxInferBenchmarks --> RxInfer
     
     ReactiveMP --> ExponentialFamily
     ReactiveMP --> ExponentialFamilyProjection
@@ -89,6 +91,11 @@ Contains example applications using RxInfer.
 Provides reactive environments for agents.
 - **[RxGP](https://github.com/ReactiveBayes/RxGP.jl)**
 Sparse Gaussian process factor nodes and variational message passing update rules for Sparse Variational Gaussian Process (VSGP) models within the RxInfer ecosystem. It enables embedding sparse GP computations directly into Forney-style factor graphs, with automatic inference over inducing variables, noise precisions, hyperparameters, and uncertain inputs.
+
+## Development and Tooling
+
+- **[RxInferBenchmarks.jl](https://github.com/ReactiveBayes/RxInferBenchmarks.jl)**
+A performance benchmarking system that tracks RxInfer.jl's compilation time, execution speed, memory usage, and garbage collection across Julia versions and dependencies over time. Results are published to an interactive dashboard at [reactivebayes.github.io/RxInferBenchmarks.jl](https://reactivebayes.github.io/RxInferBenchmarks.jl/).
 
 Our packages are designed to work together seamlessly to provide:
 
