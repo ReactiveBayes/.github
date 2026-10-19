@@ -21,6 +21,12 @@ graph TD
     ExponentialFamilyProjection["ExponentialFamilyProjection.jl"]
     ExponentialFamilyManifolds["ExponentialFamilyManifolds.jl"]
     BayesBase["BayesBase.jl"]
+    MessagePassingRulesBase["MessagePassingRulesBase.jl"]
+    StandardMessagePassingRules["StandardMessagePassingRules.jl"]
+    NodeRules["Node rule packages<br/>Delta, Autoregressive, GCV, …"]
+    MessagePassingRulesApproximations["MessagePassingRulesApproximations.jl"]
+    MessagePassingRulesTestUtils["MessagePassingRulesTestUtils.jl"]
+    MessagePassingRulesTemplate["MessagePassingRulesTemplate.jl"]
     RxGP["RxGP.jl"]
     RxInferBenchmarks["RxInferBenchmarks.jl"]
 
@@ -28,6 +34,8 @@ graph TD
     RxInfer --> GraphPPL
     RxInfer --> ReactiveMP
     RxInfer --> Rocket
+    RxInfer --> StandardMessagePassingRules
+    RxInfer --> NodeRules
 
     RxEnvironments --> Rocket
 
@@ -35,16 +43,23 @@ graph TD
     RxGP --> RxInfer
     RxInferBenchmarks --> RxInfer
     
-    ReactiveMP --> ExponentialFamily
-    ReactiveMP --> ExponentialFamilyProjection
+    ReactiveMP --> MessagePassingRulesBase
     ReactiveMP --> Rocket
+    ReactiveMP --> BayesBase
+
+    StandardMessagePassingRules --> MessagePassingRulesBase
+    StandardMessagePassingRules --> ExponentialFamily
+    NodeRules --> MessagePassingRulesBase
+    NodeRules --> MessagePassingRulesApproximations
+    NodeRules --> ExponentialFamilyProjection
+    MessagePassingRulesTestUtils --> MessagePassingRulesBase
+    MessagePassingRulesTemplate --> MessagePassingRulesBase
+    MessagePassingRulesBase --> BayesBase
     
     ExponentialFamilyProjection --> ExponentialFamilyManifolds
     ExponentialFamilyProjection --> ExponentialFamily
     ExponentialFamilyManifolds --> ExponentialFamily
-    
-    ReactiveMP --> ExponentialFamily
-    
+
     ExponentialFamily --> BayesBase
     ExponentialFamilyManifolds --> BayesBase
     ExponentialFamilyProjection --> BayesBase
@@ -55,22 +70,32 @@ graph TD
     classDef core fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,rx:5px,text-decoration:none,color:#000;
     
     %% Apply core styling to main packages
-    class ReactiveMP,GraphPPL,Rocket,ExponentialFamily core;
+    class ReactiveMP,GraphPPL,Rocket,ExponentialFamily,MessagePassingRulesBase core;
     class RxInfer rxi;
 ```
 
 ## Key Packages
 
 - **[RxInfer](https://github.com/ReactiveBayes/RxInfer.jl)**
-The central high-level probabilistic programming framework that enables reactive Bayesian inference on factor graphs through reactive message passing. It integrates tools including [probabilistic graphical model definition](https://github.com/ReactiveBayes/GraphPPL.jl) and [reactive message-based Bayesian inference](https://github.com/ReactiveBayes/ReactiveMP.jl).
+The central high-level probabilistic programming framework that enables reactive Bayesian inference on factor graphs through reactive message passing. It integrates tools including [probabilistic graphical model definition](https://github.com/ReactiveBayes/GraphPPL.jl) and [reactive message-based Bayesian inference](https://github.com/ReactiveBayes/ReactiveMP.jl), loads the rule packages most models use, and supports compiling inference with [Reactant.jl](https://github.com/EnzymeAD/Reactant.jl) (partially, see the [example](https://examples.rxinfer.com)).
 - **[ReactiveMP](https://github.com/ReactiveBayes/ReactiveMP.jl)**
-An efficient message passing-based Bayesian inference engine that implements the core algorithms and rules for performing high-performance, reactive message passing on factor graphs.
+An efficient message passing-based Bayesian inference engine that implements the core algorithms for performing high-performance, reactive message passing on factor graphs. It holds no rules of its own: it runs the rules of the rule packages below.
 - **[GraphPPL](https://github.com/ReactiveBayes/GraphPPL.jl)**
 A probabilistic programming language for specifying probabilistic graphical models as factor graphs. It provides a high-level domain-specific language for model creation and works seamlessly with RxInfer for inference.
 - **[ExponentialFamily](https://github.com/ReactiveBayes/ExponentialFamily.jl)**
 Extends [Distributions.jl](https://github.com/JuliaStats/Distributions.jl) with comprehensive implementations of a collection of exponential family distributions.
 - **[Rocket](https://github.com/ReactiveBayes/Rocket.jl)**
 A reactive programming framework providing core primitives for event handling and streaming for Julia, inspired by [RxJS](https://github.com/ReactiveX/rxjs). It forms the backbone for reactive computations in the ecosystem.
+
+## Message Passing Rules
+
+Nodes and their message passing rules are declared with **[MessagePassingRulesBase](https://github.com/ReactiveBayes/MessagePassingRulesBase.jl)** and live in registered packages of their own:
+
+- **[StandardMessagePassingRules](https://github.com/ReactiveBayes/StandardMessagePassingRules.jl)**: the standard distributions, arithmetic, logic, the mixtures and Probit.
+- One package per other node: [Delta](https://github.com/ReactiveBayes/DeltaMessagePassingRules.jl), [GaussianCoupling](https://github.com/ReactiveBayes/GaussianCouplingMessagePassingRules.jl), [Autoregressive](https://github.com/ReactiveBayes/AutoregressiveMessagePassingRules.jl), [SoftDot](https://github.com/ReactiveBayes/SoftDotMessagePassingRules.jl), [ContinuousTransition](https://github.com/ReactiveBayes/ContinuousTransitionMessagePassingRules.jl), [Polya](https://github.com/ReactiveBayes/PolyaMessagePassingRules.jl), [BIFM](https://github.com/ReactiveBayes/BIFMMessagePassingRules.jl), [Flow](https://github.com/ReactiveBayes/FlowMessagePassingRules.jl), [DiscreteTransition](https://github.com/ReactiveBayes/DiscreteTransitionMessagePassingRules.jl) and [GCV](https://github.com/ReactiveBayes/GCVMessagePassingRules.jl).
+- **[MessagePassingRulesApproximations](https://github.com/ReactiveBayes/MessagePassingRulesApproximations.jl)**: the numerical approximations the rules share, such as the unscented transform, linearization and Gauss–Hermite cubature.
+- **[MessagePassingRulesTestUtils](https://github.com/ReactiveBayes/MessagePassingRulesTestUtils.jl)**: table-driven tests of rules, down to a rule-coverage gate.
+- **[MessagePassingRulesTemplate](https://github.com/ReactiveBayes/MessagePassingRulesTemplate.jl)**: the template a new rule package starts from.
 
 ## Supporting Packages
 
@@ -105,20 +130,3 @@ Our packages are designed to work together seamlessly to provide:
 - **Flexibility**: Mix and match components for your specific needs
 
 We welcome contributions from the community! Check out our individual package repositories for more details on how to get involved.
-
-## Using RxInfer from Python
-
-> **Third-party, unmaintained.** `RxInferServer.jl` and the `RxInferClient.py` Python SDK are developed by [Lazy Dynamics](https://lazydynamics.com) — an external organisation that is separate from the core RxInfer team. These projects are distributed under a different license than `RxInfer.jl` and are **not actively maintained** by the ReactiveBayes / RxInfer core team. The links on this page are provided for reference only; some of them may be outdated or unavailable. Please direct support requests to the respective upstream repositories rather than to the RxInfer issue tracker.
-
-RxInfer can be used from Python through the `RxInferServer.jl` RESTful API and the `RxInferClient.py` Python SDK.
-
-For detailed documentation on how to use RxInfer from Python, please refer to:
-
-- [RxInferServer Repository](https://github.com/lazydynamics/RxInferServer) — Source code and examples for the server
-- [Python SDK Repository](https://github.com/lazydynamics/RxInferClient.py) — Source code and examples for the Python client
-
-For support and issues, please use:
-
-- [RxInferServer Issues](https://github.com/lazydynamics/RxInferServer/issues)
-- [Python SDK Issues](https://github.com/lazydynamics/RxInferClient.py/issues)
-- [Community Discussions](https://github.com/ReactiveBayes/RxInfer.jl/discussions)
